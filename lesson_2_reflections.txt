@@ -35,16 +35,95 @@ You're about to make your first commit to your reflections repository. When you 
 You can also specify a commit message via the command line by running git commit -m "Commit message" instead of just git commit. It's still a good idea to get an editor set up, since this will make it easier to write long commit messages that fully describe the change.
 
 
+Git Diff
+So you can use git log find the ID ot the commit with a bug, use git diff to compared with the previous commit to se what was added or mododied and in which file, then fix the file, use git diff (NO ID) to see changes in files in working directory, after stagging, git add, use git diff  --staged to see modifications if you agree commit. if you want to discard changes use git reset --hard
+
+
+
+Leave 'detached HEAD' state
+
+Right now, your HEAD should still be 'detached' from Lesson 1 when you checked out an old commit. To fix that, run the command git checkout master. You'll learn more about what this command does later this lesson.
+
+
+How can you use the staging area to make sure you have one commit per logical change?
+
+
+
+
 
 What are some situations when branches would be helpful in keeping your history
 organized? How would branches help?
 
+BRANCHES
+
+cFixbug------cnewFeature------cupdate-------fix/backup/Master
+
+
+cupdate---------experimental feauture
+cupdate--------italianVersion
+
+MERGING
+
+experimental feauture--------Mester
+
+to look at your brances  git branch
+To create a branch       git branch namebranch
+to work in that branch   git checkout namebranch
+
+new branch as same code that previous.
+
+
+What are some situations when branches would be helpful in keeping your history organized? How would branches help?
+By organizing the differen paths and modifications in my project.
+you have a official branch that never brakes, then you may have a developmental branch and other experimental that you can show to pubic but saying that is not producction quality.
+
+
 How do the diagrams help you visualize the branch structure?
+
+Commit history diagram: will show you the commits that have been taking place in your branches.
+
+
+git log --graph --oneline master easy-mode coins
+
+
+say that you git checkout a commit and modified somthing. If you check out other
+branch your commit will desapier you can use git checkout -b new_branch_name  ,
+which is equivalent to create a branch and checkout that branch.
+if you run this commands in this commit "detach Head" your new branch will be cr
+eated from this commit and any subsequent changes.
+
 
 What is the result of merging two branches together? Why do we represent it in
 the diagram the way we do?
+Les say that you are conbining two branches, you have good features in coins branch that you want to include in master branch, we could say that the new branch will be the tip of master branch since you are merching coins into master(you need to be in master branch) , now HOW TO KNOW what was added or deleted from the parent commit in coins and master, so you will have to include the parent commit(revert controls), the commit from which the two branches started.
 
+Then you can delete coins branch(just the label) and still reach commits.
+
+Quiz: Merging Coins into Master
+
+If a branch is deleted and leaves some commits unreachable from existing branches, those commits will continue to be accessible by commit id, until Git’s garbage collection runs. This will happen automatically from time to time, unless you actively turn it off. You can also run this process manually with git gc.
+
+
+u cannot push anything that hasn't been committed yet. The order of operations is:
+
+    Make your change.
+    git add - this stages your changes for committing
+    git commit - this commits your staged changes locally
+    git push - this pushes your committed changes to a remote
+
+If you push without committing, nothing gets pushed. If you commit without adding, nothing gets committed. If you add without committing, nothing at all happens, git merely remembers that the changes you added should be considered for the following commit.
+
+The message you're seeing (your branch is ahead by 1 commit) means that your local repository has one commit that hasn't been pushed yet.
+
+In other words: add and commit are local operations, push, pull and fetch are operations that interact with a remote.
+
+Since there seems to be an official source control workflow in place where you work, you should ask internally how this should be handled.
+
+
+
+****when mergin some times you want to check the changes in one commit but you do not have the previous commit(parent to use git diff. For this you can use git show  (ID) 
+
+use git branch -d coins   ,  to delet the label.
 What are the pros and cons of Gitâ€™s automatic merging vs. always doing merges
 manually?
-
 
